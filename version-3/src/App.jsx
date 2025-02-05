@@ -7,29 +7,32 @@ import CountriesCards from "./components/CountriesCards.jsx";
 import Layout from "./components/Layout";
 import UserSaved from "./Pages/UserSaved.jsx";
 import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
+
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAy2PMxmmmYaO4WWmL0koR0bjr-YK1uNoA",
-  authDomain: "countriesapi-8fe81.firebaseapp.com",
-  projectId: "countriesapi-8fe81",
-  storageBucket: "countriesapi-8fe81.firebasestorage.app",
-  messagingSenderId: "914190366695",
-  appId: "1:914190366695:web:5f4e712d79d22af9a82f42",
-  measurementId: "G-B1F3MHCBMM"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = getDatabase(app)
 
 
-
-const App = () => {
-  const [currentUserName, setCurrentUserName] = useState("");
+function App() {
+  const [fullname, setFullname] = useState("");
 
   useEffect(() => {
-    const savedName = localStorage.getItem("currentUserName") || "";
-    setCurrentUserName(savedName);
-    console.log("Loaded currentUserName from localStorage:", savedName);
+    const savedFullname = localStorage.getItem("fullname");
+    if (savedFullname) {
+      setFullname(savedFullname);
+    }
   }, []);
 
   return (
@@ -38,11 +41,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/countries" element={<CountriesCards />} />
-          <Route path="/Details" element={<Details />} />
+          <Route path="/Details" element={<Details db={db} />} />  
           <Route
-            path="/UserSaved"
-            element={<UserSaved currentUserName={currentUserName} />}
-          />
+          path="/UserSaved" element={<UserSaved db={db} />} 
+        />
         </Routes>
       </Layout>
     </>
