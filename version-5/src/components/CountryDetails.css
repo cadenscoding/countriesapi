@@ -1,0 +1,23 @@
+
+.details-container {
+  display: flex;
+  justify-content: center;  
+  align-items: center;      
+  gap: 5rem;
+  margin: 5rem;
+}
+
+  
+ 
+  .details-text {
+    color: #333; 
+    font-size: x-large;
+  }
+  
+
+ 
+  .details-text p {
+    margin: 5px 0; 
+  }
+
+  

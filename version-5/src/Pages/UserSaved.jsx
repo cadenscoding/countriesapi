@@ -14,7 +14,7 @@ function UserSaved() {
   const [isSubmitted, setIsSubmitted] = useState(localStorage.getItem("isSubmitted") === 'true' || false);
 
   const API_URL = "http://localhost:3006";
-// in use effect to make sure this happens when userid avaliable
+
   useEffect(() => {
     if (user_id) {
       const fetchUserData = async () => {
