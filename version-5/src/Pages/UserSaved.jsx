@@ -13,7 +13,7 @@ function UserSaved() {
   const [savedCountries, setSavedCountries] = useState([]);
   const [isSubmitted, setIsSubmitted] = useState(localStorage.getItem("isSubmitted") === 'true' || false);
 
-  const API_URL = "http://localhost:3006";
+  const API_URL = "https://countriesapi-x8bi.onrender.com";
 
   useEffect(() => {
     if (user_id) {

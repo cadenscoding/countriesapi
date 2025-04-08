@@ -5,7 +5,7 @@ function Details() {
   const { state: country } = useLocation();
   const [viewCount, setViewCount] = useState(0);
 
-  const API_URL = "http://localhost:3006";
+  const API_URL = "https://countriesapi-x8bi.onrender.com";
 
   useEffect(() => {
     const viewCount = async () => {
