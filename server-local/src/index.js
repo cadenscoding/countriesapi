@@ -1,6 +1,5 @@
 import express from "express";
 import pg from "pg";
-import config from "../config.js";
 import cors from "cors";
 
 let config = {
