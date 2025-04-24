@@ -11,11 +11,6 @@ let config = {
   ssl: true
 }
 
-
-
-
-
-
 const { Client } = pg;
 
 const connectDB = async () => {
