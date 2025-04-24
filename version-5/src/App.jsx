@@ -14,10 +14,10 @@ function App() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch(`${API_URL}/user/1`); 
+        const response = await fetch(`${API_URL}/user/1`);
         const data = await response.json();
         if (response.ok) {
-          setUser(data); 
+          setUser(data);
         }
       } catch (error) {
         console.error("Error fetching user:", error);
@@ -28,14 +28,15 @@ function App() {
   }, []);
 
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/countries" element={<CountriesCards />} />
-        <Route path="/details" element={<Details />} />
-        <Route path="/usersaved" element={<UserSaved user_id={user?.user_id} />} />
-      </Routes>
-    </Layout>
+    <Routes>
+      
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="countries" element={<CountriesCards />} />
+        <Route path="details" element={<Details />} />
+        <Route path="usersaved" element={<UserSaved user_id={user?.user_id} />} />
+      </Route>
+    </Routes>
   );
 }
 

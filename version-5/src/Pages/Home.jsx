@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Header from "../components/Header"; 
+import { useOutletContext } from "react-router-dom";
 import CountriesCards from "../components/CountriesCards"; 
 import "../App.css"; 
 
 const Home = () => {
   const [countries, setCountries] = useState([]);
-  const [search, setSearch] = useState("");
+  const { search } = useOutletContext(); 
 
- 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -22,7 +21,6 @@ const Home = () => {
     fetchCountries();
   }, []);
 
-  
   const filteredCountries = countries.filter((country) =>
     country.name.common.toLowerCase().includes(search.toLowerCase())
   );
@@ -30,9 +28,6 @@ const Home = () => {
   return (
     <div className="home-container">
     
-      <Header search={search} setSearch={setSearch} />
-
-     
       <CountriesCards countries={filteredCountries} />
     </div>
   );
