@@ -39,7 +39,7 @@ const executeQuery = async (query, params = []) => {
     console.error("Database error:", error);
     throw error;
   } finally {
-    await client.end();
+    await client.end(); 
   }
 };
 
