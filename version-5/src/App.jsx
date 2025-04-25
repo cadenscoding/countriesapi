@@ -9,7 +9,7 @@ import UserSaved from "./Pages/UserSaved.jsx";
 
 function App() {
   const [user, setUser] = useState(null);
-  const API_URL = "https://countriesapi-1.onrender.com";
+  const API_URL = "https://countriesapi-x8bi.onrender.com";
 
   useEffect(() => {
     const fetchUser = async () => {
