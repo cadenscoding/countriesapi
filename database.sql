@@ -16,10 +16,15 @@ CREATE TABLE user_saved_countries (
     population INT,
 );
 
+-- CREATE TABLE country_clicks (
+--     click_id SERIAL PRIMARY KEY,
+--     country_code VARCHAR(20),
+--     country_count INT
+-- );
+
 CREATE TABLE country_clicks (
-    click_id SERIAL PRIMARY KEY,
-    country_code VARCHAR(20),
-    country_count INT
+  country_code VARCHAR(20) PRIMARY KEY,
+  country_count INT
 );
 
 -- TRUNCATE table to remove and reset auto-increment 
