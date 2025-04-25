@@ -101,17 +101,31 @@ app.get("/saved-countries/:id", async (req, res) => {
 
 //country click count
 app.post("/click-country/:code", async (req, res) => {
+  const countryCode = req.params.code;
+
   try {
-    const rows = await executeQuery(
+    const result = await executeQuery(
       `INSERT INTO country_clicks (country_code, country_count)
        VALUES ($1, 1)
        ON CONFLICT (country_code) DO UPDATE 
        SET country_count = country_clicks.country_count + 1
        RETURNING country_count`,
-      [req.params.code]
+      [countryCode]
     );
-    res.json({ success: true, country_code: req.params.code, country_count: rows[0]?.country_count || 0 });
-  } catch {
-    res.status(500).json({ success: false, message: "Click count failed" });
+
+    const updatedCount = result[0]?.country_count ?? 0;
+
+    res.json({
+      success: true,
+      country_code: countryCode,
+      country_count: updatedCount,
+    });
+  } catch (error) {
+    console.error("Click count error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Click count failed",
+      error: error.message,
+    });
   }
 });
