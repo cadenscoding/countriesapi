@@ -22,7 +22,12 @@ const connectDB = async () => {
 const app = express();
 const port = 3006;
 
-app.use(cors());
+
+app.use(cors({
+  origin: "https://productappbycaden.netlify.app", 
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
 app.use(express.json());
 
 app.listen(port, () => {
